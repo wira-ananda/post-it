@@ -1,0 +1,84 @@
+@startuml
+left to right direction
+
+actor Guest
+
+rectangle post-it {
+  actor Admin
+  actor Penulis
+  actor Pembaca
+
+  usecase daftarAll as "Daftar Akun"
+
+  Guest -- daftarAll
+
+  rectangle "Admin" {
+    usecase berandaAdmin as "Masuk Beranda Admin"
+    daftarAll -- Admin
+    Admin -- berandaAdmin
+
+    usecase hapusArtikel as "Hapus Artikel"
+    berandaAdmin -- hapusArtikel
+
+    usecase bukaReq as "Buka Request Artikel"
+    berandaAdmin -- bukaReq
+    usecase terimaReq as "Terima Request Artikel"
+    bukaReq -- terimaReq
+    usecase tolakReq as "Tolak Request Artikel"
+    bukaReq -- tolakReq
+
+    usecase bukaProfilAdmin as "Masuk Profil Admin"
+    berandaAdmin -- bukaProfilAdmin
+
+
+    usecase bukaArtikel as "Baca Artikel"
+    berandaAdmin -- bukaArtikel
+    usecase komenArtikel as "Komentari Artikel"
+    bukaArtikel -- komenArtikel
+    usecase bacaKomen as "Baca Komentar Artikel"
+    bukaArtikel -- bacaKomen
+
+  }
+
+  rectangle "Penulis" {
+    usecase berandaPenulis as "Masuk Beranda Penulis"
+    daftarAll -- Penulis
+    Penulis -- berandaPenulis
+
+    usecase tulisArtikel as "Tulis Artikel"
+    berandaPenulis -- tulisArtikel
+    usecase uploadArtikel as "Upload to Req Artikel"
+    tulisArtikel -- uploadArtikel
+
+    usecase bukaProfil as "Masuk Profil Penulis"
+    berandaPenulis -- bukaProfil
+    usecase editArtikel as "Edit Artikel"
+    bukaProfil -- editArtikel
+    usecase hapusArtikelPenulis as "Hapus Artikel"
+    bukaProfil -- hapusArtikelPenulis
+
+    usecase bukaArtikelPenulis as "Baca Artikel"
+    berandaPenulis -- bukaArtikelPenulis
+    usecase komenArtikelPenulis as "Komentari Artikel"
+    bukaArtikelPenulis -- komenArtikelPenulis
+    usecase bacaKomenPenulis as "Baca Komentar Artikel"
+    bukaArtikelPenulis -- bacaKomenPenulis
+  }
+
+  rectangle "Pembaca" {
+    usecase berandaPembaca as "Masuk Beranda Pembaca"
+    daftarAll -- Pembaca
+    Pembaca -- berandaPembaca
+
+    usecase bukaProfilPembaca as "Masuk Profil Pembaca"
+    berandaPembaca -- bukaProfilPembaca
+
+    usecase bukaArtikelPembaca as "Baca Artikel"
+    berandaPembaca -- bukaArtikelPembaca
+    usecase komenArtikelPembaca as "Komentari Artikel"
+    bukaArtikelPembaca -- komenArtikelPembaca
+    usecase bacaKomenPembaca as "Baca Komentar Artikel"
+    bukaArtikelPembaca -- bacaKomenPembaca
+  }
+}
+@enduml
