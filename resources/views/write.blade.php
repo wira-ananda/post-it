@@ -7,6 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Post-it</title>
   @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <style>
+    input[name="judul"]::placeholder {
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
+  </style>
+
 </head>
 
 <body class="bg-white text-black font-sans">
@@ -24,7 +31,6 @@
           </svg>
         </button>
       </div>
-      <a href="#" class="hover:underline">Write</a>
       <a href="#" class="flex items-center space-x-1 hover:underline">
         <span>Account</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -34,24 +40,33 @@
     </nav>
   </header>
 
-  <main class="py-8 px-8">
-    <div class="space-y-8">
-      @foreach(range(1, 5) as $post)
-      <a href="/artikel" class="block">
-
-        <div class="flex justify-between items-start">
-          <div>
-            <p class="text-sm text-gray-500">@usernameWriter</p>
-            <h2 class="font-semibold text-lg">
-              Judul artikel ada disini, ditempatkan disini, dan berbentuk seperti ini.
-            </h2>
-          </div>
-          <div class="w-20 h-16 bg-gray-300 rounded"></div>
-        </div>
-      </a>
-      @endforeach
+  <form method="POST" action="#" class="max-w-xl mx-auto p-4">
+    @csrf
+    <div class="mb-2">
+      <input type="text" id="title" name="judul" placeholder="Judul.." class="mt-2 w-full p-2 " required>
     </div>
-  </main>
+    <div class="mb-2">
+      <input type="text" id="title" name="title" placeholder="Tuliskan artikelnya disini.." class="mt-2 w-full p-2 " required>
+    </div>
+
+    <div class="flex justify-between">
+      <div class="mb-2">
+        <select id="category" name="category" class="mt-2 w-full p-2 ">
+          <option value="">Pilih Kategori</option>
+          <option value="tech">Teknologi</option>
+          <option value="health">Kesehatan</option>
+          <option value="education">Pendidikan</option>
+        </select>
+      </div>
+
+      <div class="text-right">
+        <button type="submit" class="px-4 py-2 bg-black text-white font-semibold rounded-md ">Publish</button>
+      </div>
+  </form>
+
+
+  </div>
+
 </body>
 
 </html>
