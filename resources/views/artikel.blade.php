@@ -55,8 +55,10 @@
         Vestibulum morbi blandit cursus risus at ultrices mi tempus imperdiet. Nisl rhoncus mattis rhoncus urna neque...
       </p>
     </article>
-
-    <!-- Comment Section -->
+    <form action="#" method="POST" class="mt-6 flex items-center space-x-4">
+      <input type="text" name="comment" placeholder="Berikan tanggapan tentang artikel ini..." class="flex-1 border rounded px-4 py-2">
+      <button type="submit" class="px-6 py-2 bg-black text-white rounded">Kirim</button>
+    </form>
     <section class="mt-8">
       <h2 class="text-xl font-semibold mb-4">Responses</h2>
       @foreach (range(1, 3) as $post )
@@ -72,11 +74,7 @@
       </div>
     </section>
 
-    <!-- Comment Form -->
-    <form action="#" method="POST" class="mt-6 flex items-center space-x-4">
-      <input type="text" name="comment" placeholder="Berikan tanggapan tentang artikel ini..." class="flex-1 border rounded px-4 py-2">
-      <button type="submit" class="px-6 py-2 bg-black text-white rounded">Kirim</button>
-    </form>
+
   </main>
 </body>
 
