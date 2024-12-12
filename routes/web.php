@@ -18,6 +18,10 @@ Route::get('/create', function () {
     return view('write');
 });
 
+Route::get('/akun', function () {
+    return view('akun');
+});
+
 Route::post('/login', function (Illuminate\Http\Request $request) {
     // Logika untuk menangani login
     // Contoh validasi

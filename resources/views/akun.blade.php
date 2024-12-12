@@ -25,7 +25,7 @@
         </button>
       </div>
       <a href="#" class="hover:underline">Write</a>
-      <a href="/akun" class="flex items-center space-x-1 hover:underline">
+      <a href="#" class="flex items-center space-x-1 hover:underline">
         <span>Account</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
           <path d="M10 2a4 4 0 110 8 4 4 0 010-8zm6 12a6 6 0 00-12 0v1h12v-1z" />
@@ -35,6 +35,14 @@
   </header>
 
   <main class="py-8 px-8">
+    <div class="mb-4">
+      <div class="bg-black rounded-full w-12 h-12 mb-4"></div>
+      <div class="flex gap-4">
+        <div class="font-bold">@WiraAnanda</div>
+        <div>writer</div>
+      </div>
+      <div>ini bio saya, apa yang harus saya masukkan dan jadikan bio??</div>
+    </div>
     <div class="space-y-8">
       @foreach(range(1, 5) as $post)
       <a href="/artikel" class="block">

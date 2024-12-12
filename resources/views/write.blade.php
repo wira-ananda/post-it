@@ -13,7 +13,6 @@
       font-size: 1.5rem;
     }
   </style>
-
 </head>
 
 <body class="bg-white text-black font-sans">
