@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
 <form method="POST" action="#" class="max-w-xl mx-auto p-4">
   @csrf
   <div class="mb-2">
