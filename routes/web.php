@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
-Route::get('/users', [UserController::class, 'index']);
+Route::get('/api/users', [UserController::class, 'index']);
+
+Route::post('/api/users', [UserController::class, 'store']);
 
 Route::get('/', function () {
     return view('login');
