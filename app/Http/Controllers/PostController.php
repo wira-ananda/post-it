@@ -16,40 +16,52 @@ class PostController extends Controller
     ], 500);
   }
 
-  // public function store(Request $request): JsonResponse
-  // {
-  //   try {
-  //     $user = Post::create([
-  //       'username' => $request->input('username'),
-  //       'password' => $request->input('password'),
-  //       'role' => $request->input('role')
-  //     ]);
-
-  //     return response()->json([
-  //       'status' => 'success',
-  //       'message' => 'User berhasil dibuat.',
-  //       'data' => $user,
-  //     ], 201);
-  //   } catch (\Exception $e) {
-  //     return $this->error($e);
-  //   }
-  // }
-
   public function index(): JsonResponse
   {
     try {
-      $users = Post::all();
+      $posts = Post::all();
 
-      if ($users->isEmpty()) {
+      if ($posts->isEmpty()) {
         return response()->json([
           'status' => 'error',
-          'message' => 'Tidak ada data users yang ditemukan.',
+          'message' => 'Tidak ada data posts yang ditemukan.',
         ], 404);
       }
 
-      return response()->json($users, 200);
+      return response()->json($posts, 200);
     } catch (\Exception $e) {
       return $this->error($e);
     }
+  }
+
+  public function writePost(Request $request)
+  {
+    $post = new Post();
+    $post->title = $request->input('title');
+    $post->postingan = $request->input('isi');
+    $post->user_id = $request->session()->get('id');
+    $post->save();
+
+    return view('write');
+  }
+
+  public function getPostById($id)
+  {
+    $post = Post::findOrFail($id);
+
+    return view('artikel', compact('post'));
+  }
+
+  public function getAllPost()
+  {
+    $posts = Post::with('user')->get();
+    return view('homepage', compact('posts'));
+  }
+
+  public function getAllPostFromUserId()
+  {
+    $posts = Post::where('user_id', session('id'))->get();
+
+    return view('akun', compact('posts'));
   }
 }

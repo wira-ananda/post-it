@@ -7,15 +7,15 @@
     <div id="role">{{session('role', 'Visitor')}}</div>
   </div>
 </div>
-<div class="space-y-8">
-  @foreach(range(1, 5) as $post)
-  <a href="/artikel" class="block">
 
+<div class="space-y-8">
+  @foreach($posts as $post)
+  <a href="/artikel/{{ $post->id }}" class="block">
     <div class="flex justify-between items-start">
       <div>
-        <p class="text-sm text-gray-500">@usernameWriter</p>
+        <p class="text-sm text-gray-500">{{'@'.session('username')}}</p>
         <h2 class="font-semibold text-lg">
-          Judul artikel ada disini, ditempatkan disini, dan berbentuk seperti ini.
+          {{ $post->title }}
         </h2>
       </div>
       <div class="w-20 h-16 bg-gray-300 rounded"></div>
@@ -23,4 +23,5 @@
   </a>
   @endforeach
 </div>
+
 @endsection

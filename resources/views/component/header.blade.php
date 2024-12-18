@@ -22,12 +22,14 @@
     @if (!request()-> is('create') && (session('role') == 'writer' ))
     <a href="/create?" class="hover:underline">Write</a>
     @endif
+    @if (!request()-> is('akun'))
     <a href="/akun" class="flex items-center space-x-1 hover:underline">
       <span>Account</span>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
         <path d="M10 2a4 4 0 110 8 4 4 0 010-8zm6 12a6 6 0 00-12 0v1h12v-1z" />
       </svg>
     </a>
+    @endif
   </nav>
   @endif
 </header>

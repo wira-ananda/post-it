@@ -4,10 +4,10 @@
 <form method="POST" action="#" class="max-w-xl mx-auto p-4">
   @csrf
   <div class="mb-2">
-    <input type="text" id="title" name="judul" placeholder="Judul.." class="mt-2 w-full p-2 " required>
+    <input type="text" id="title" name="title" placeholder="Judul.." class="mt-2 w-full p-2 " required>
   </div>
   <div class="mb-2">
-    <input type="text" id="title" name="title" placeholder="Tuliskan artikelnya disini.." class="mt-2 w-full p-2 " required>
+    <input type="text" id="isi" name="isi" placeholder="Tuliskan artikelnya disini.." class="mt-2 w-full p-2 " required>
   </div>
 
   <div class="flex justify-between">
@@ -20,8 +20,8 @@
       </select>
     </div>
 
-    <div class="text-right">
+    <a class="text-right" href="/home">
       <button type="submit" class="px-4 py-2 bg-black text-white font-semibold rounded-md ">Publish</button>
-    </div>
+    </a>
 </form>
 @endsection

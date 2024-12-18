@@ -6,18 +6,12 @@
   <article class="gap-4">
     <div class="flex items-center space-x-2 mb-4">
       <span class="bg-teal-500 text-white text-xs px-3 py-1 rounded-full">Teknologi</span>
-      <span class="text-gray-500 text-sm">@usernameWriter</span>
+      <span class="text-gray-500 text-sm">{{'@'.session('username')}}</span>
     </div>
-    <h1 class="font-bold text-2xl mb-4">Judul artikel ada disini, ditempatkan disini, dan berbentuk seperti ini.</h1>
+    <h1 class="font-bold text-2xl mb-4">{{$post->title}}</h1>
     <div class="w-full h-64 bg-gray-300 rounded mb-6"></div>
     <p class="text-gray-600 leading-relaxed mb-4">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-    </p>
-    <p class="text-gray-600 leading-relaxed mb-4">
-      Phasellus faucibus scelerisque eleifend donec pretium. Vulputate eu scelerisque felis imperdiet proin fermentum leo...
-    </p>
-    <p class="text-gray-600 leading-relaxed mb-4">
-      Vestibulum morbi blandit cursus risus at ultrices mi tempus imperdiet. Nisl rhoncus mattis rhoncus urna neque...
+      {{$post->postingan}}
     </p>
   </article>
   <form action="#" method="POST" class="mt-6 flex items-center space-x-4">
