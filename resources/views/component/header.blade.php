@@ -3,6 +3,8 @@
     <img src="{{ asset('logoWira.svg') }}" alt="Post-it Logo" class="h-6 mr-2">
     <span class="font-bold text-xl">post-it</span>
   </a>
+  @if (!request()->is('/'))
+
   <nav class="flex items-center space-x-6 text-sm">
     @if (!request()-> is('home'))
     <a href="/home" class="hover:underline">Home</a>
@@ -26,7 +28,5 @@
       </svg>
     </a>
   </nav>
+  @endif
 </header>
-
-<!--  
-  -->

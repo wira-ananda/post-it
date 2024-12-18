@@ -15,10 +15,8 @@
 </head>
 
 <body class="bg-white text-black font-sans">
-  <!-- Header -->
   @include('component.header')
 
-  <!-- Main Content -->
   <main class="py-8 px-8">
     @yield('content')
   </main>

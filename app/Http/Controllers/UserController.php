@@ -34,6 +34,7 @@ class UserController extends Controller
             return $this->error($e);
         }
     }
+
     public function index(): JsonResponse
     {
         try {
