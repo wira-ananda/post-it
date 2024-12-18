@@ -35,6 +35,8 @@ Route::post('/login', function (Request $request) {
 
     if ($user && $user->password == $request->input('password')) {
         if ($user->role == $request->input('account_type')) {
+            session(['username' => $user->username, 'role' => $user->role]);
+
             return redirect()->route('home')->with('success', 'Login berhasil!');
         } else {
             return redirect()->back()->withErrors(['role' => 'Role tidak sesuai']);

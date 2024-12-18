@@ -1,13 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="mb-4">
-  <div class="bg-black rounded-full w-12 h-12 mb-4"></div>
+<div class="mb-8 pb-4 border-b border-gray-200">
   <div class="flex gap-4">
-    <div class="font-bold">@WiraAnanda</div>
-    <div>writer</div>
+    <div id="username" class="font-bold">{{'@'.session('username', 'Guest')}}</div>
+    <div id="role">{{session('role', 'Visitor')}}</div>
   </div>
-  <div>ini bio saya, apa yang harus saya masukkan dan jadikan bio??</div>
 </div>
 <div class="space-y-8">
   @foreach(range(1, 5) as $post)

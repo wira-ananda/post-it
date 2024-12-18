@@ -1,4 +1,4 @@
-<header class="flex justify-between items-center py-4 px-8 border-b border-gray-200">
+<header class="sticky top-0 bg-white flex justify-between items-center py-4 px-8 border-b border-gray-200">
   <a class="flex items-center">
     <img src="{{ asset('logoWira.svg') }}" alt="Post-it Logo" class="h-6 mr-2">
     <span class="font-bold text-xl">post-it</span>
@@ -18,7 +18,7 @@
       </button>
     </div>
 
-    @if (!request()-> is('create'))
+    @if (!request()-> is('create') && (session('role') == 'writer' ))
     <a href="/create?" class="hover:underline">Write</a>
     @endif
     <a href="/akun" class="flex items-center space-x-1 hover:underline">
