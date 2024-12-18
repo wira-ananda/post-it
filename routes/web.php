@@ -3,9 +3,19 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Post;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/api/users', [UserController::class, 'index']);
+
+Route::get('/api/posts', [PostController::class, 'index']);
+
+Route::get('/api/comments', [CommentController::class, 'index']);
+
+
+
 
 Route::post('/api/users/create', [UserController::class, 'store']);
 

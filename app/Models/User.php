@@ -14,4 +14,9 @@ class User extends Model
     public $timestamps = true;
 
     protected $fillable = ['username', 'password', 'role'];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
