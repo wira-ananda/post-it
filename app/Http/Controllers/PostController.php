@@ -48,8 +48,9 @@ class PostController extends Controller
   public function getPostById($id)
   {
     $post = Post::findOrFail($id);
+    $comments = $post->comments()->with('user')->get();
 
-    return view('artikel', compact('post'));
+    return view('artikel', compact('post', 'comments'));
   }
 
   public function getAllPost()

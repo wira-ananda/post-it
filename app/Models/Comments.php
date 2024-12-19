@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Comments extends Model
 {
     use HasFactory;
-
     protected $table = 'comments';
     protected $primaryKey = 'id';
-    public $timestamps = true;
+    public $timestamps = false;
     protected $fillable = ['content', 'post_id', 'user_id'];
 
     public function user()

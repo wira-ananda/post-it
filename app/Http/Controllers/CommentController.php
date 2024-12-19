@@ -16,24 +16,20 @@ class CommentController extends Controller
     ], 500);
   }
 
-  // public function store(Request $request): JsonResponse
-  // {
-  //   try {
-  //     $user = Post::create([
-  //       'username' => $request->input('username'),
-  //       'password' => $request->input('password'),
-  //       'role' => $request->input('role')
-  //     ]);
+  public function storeComment(Request $request, $id)
+  {
+    try {
+      Comments::create([
+        'content' => $request->input('comment'),
+        'post_id' => $id,
+        'user_id' => session('id'),
+      ]);
 
-  //     return response()->json([
-  //       'status' => 'success',
-  //       'message' => 'User berhasil dibuat.',
-  //       'data' => $user,
-  //     ], 201);
-  //   } catch (\Exception $e) {
-  //     return $this->error($e);
-  //   }
-  // }
+      return redirect()->back()->with('success', 'Komentar berhasil ditambahkan.');
+    } catch (\Exception $e) {
+      return redirect()->back()->with('error', 'Gagal menambahkan komentar: ' . $e->getMessage());
+    }
+  }
 
   public function index(): JsonResponse
   {

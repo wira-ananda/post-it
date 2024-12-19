@@ -32,6 +32,8 @@ Route::post('/create', [PostController::class, 'writePost']);
 
 Route::get('/artikel/{id}', [PostController::class, 'getPostById']);
 
+Route::post('/artikel/{id}', action: [CommentController::class, 'storeComment']);
+
 Route::get('/home', [PostController::class, 'getAllPost'])->name('home');
 
 Route::get('/akun', [PostController::class, 'getAllPostFromUserId']);
