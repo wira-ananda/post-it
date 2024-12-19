@@ -62,7 +62,6 @@ class PostController extends Controller
 
     $message = $id ? 'Postingan berhasil diperbarui.' : 'Postingan berhasil dibuat.';
 
-    // Redirect ke halaman artikel dengan ID postingan
     return redirect()->route('artikel', ['id' => $post->id])->with('success', $message);
   }
 
