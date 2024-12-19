@@ -7,6 +7,7 @@
   @if (!request()->is('/') && !request()->is('sign-in'))
 
   <nav class="flex items-center space-x-6 text-sm">
+    <a class="cursor-pointer hover:underline" href="/">Keluar</a>
     @if (!request()-> is('home'))
     <a href="/home" class="hover:underline">Home</a>
     @endif

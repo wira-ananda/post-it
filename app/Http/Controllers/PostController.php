@@ -42,7 +42,8 @@ class PostController extends Controller
     $post->user_id = $request->session()->get('id');
     $post->save();
 
-    return view('write');
+
+    return redirect()->route('home')->with('success', 'Postingan berhasil dihapus.');
   }
 
   public function getPostById($id)
@@ -64,5 +65,16 @@ class PostController extends Controller
     $posts = Post::where('user_id', session('id'))->get();
 
     return view('akun', compact('posts'));
+  }
+  public function deletePost($id)
+  {
+    $post = Post::findOrFail($id);
+    if ($post->user_id !== session('id')) {
+      return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk menghapus postingan ini.');
+    }
+
+    $post->delete();
+
+    return redirect()->route('home')->with('success', 'Postingan berhasil dihapus.');
   }
 }

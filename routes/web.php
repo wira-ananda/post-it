@@ -34,6 +34,8 @@ Route::get('/artikel/{id}', [PostController::class, 'getPostById']);
 
 Route::post('/artikel/{id}', action: [CommentController::class, 'storeComment']);
 
+Route::delete('/artikel/{id}', action: [PostController::class, 'deletePost']);
+
 Route::get('/home', [PostController::class, 'getAllPost'])->name('home');
 
 Route::get('/akun', [PostController::class, 'getAllPostFromUserId']);

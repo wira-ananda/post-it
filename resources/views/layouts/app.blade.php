@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Post-It | Wiraa</title>
   <style>
-    input[name="judul"]::placeholder {
+    input[name="title"]::placeholder {
       font-weight: bold;
       font-size: 1.5rem;
     }
