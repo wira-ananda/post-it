@@ -30,12 +30,18 @@ Route::get('/create', function () {
 
 Route::post('/create', [PostController::class, 'writePost']);
 
-Route::get('/artikel/{id}', [PostController::class, 'getPostById']);
+Route::get('/artikel/{id}', [PostController::class, 'getPostById'])->name('artikel');
 
 Route::post('/artikel/{id}', action: [CommentController::class, 'storeComment']);
 
 Route::delete('/artikel/{id}', action: [PostController::class, 'deletePost']);
 
+Route::delete('/comment/{id}', action: [CommentController::class, 'deleteComment']);
+
 Route::get('/home', [PostController::class, 'getAllPost'])->name('home');
 
 Route::get('/akun', [PostController::class, 'getAllPostFromUserId']);
+
+Route::get('/post/{id}/edit', [PostController::class, 'editPost'])->name('post.edit');
+
+Route::post('/post/{id?}', [PostController::class, 'writePost'])->name('post.write');

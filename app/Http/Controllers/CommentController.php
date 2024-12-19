@@ -48,4 +48,12 @@ class CommentController extends Controller
       return $this->error($e);
     }
   }
+  public function deleteComment($id)
+  {
+    $comments = Comments::findOrFail($id);
+
+    $comments->delete();
+
+    return redirect()->back()->with('success', 'Postingan berhasil dihapus.');
+  }
 }

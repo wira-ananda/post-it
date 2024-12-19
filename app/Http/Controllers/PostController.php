@@ -33,18 +33,39 @@ class PostController extends Controller
       return $this->error($e);
     }
   }
-
-  public function writePost(Request $request)
+  public function editPost($id)
   {
-    $post = new Post();
+    $post = Post::findOrFail($id);
+
+    if (session('role') !== 'admin' && $post->user_id !== session('id')) {
+      return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk mengedit postingan ini.');
+    }
+
+    return view('write', compact('post'));
+  }
+
+  public function writePost(Request $request, $id = null)
+  {
+    $post = $id ? Post::findOrFail($id) : new Post();
+
+    if ($id) {
+      if (session('role') !== 'admin' && $post->user_id !== session('id')) {
+        return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk mengedit postingan ini.');
+      }
+    } else {
+      $post->user_id = session('id');
+    }
+
     $post->title = $request->input('title');
     $post->postingan = $request->input('isi');
-    $post->user_id = $request->session()->get('id');
     $post->save();
 
+    $message = $id ? 'Postingan berhasil diperbarui.' : 'Postingan berhasil dibuat.';
 
-    return redirect()->route('home')->with('success', 'Postingan berhasil dihapus.');
+    // Redirect ke halaman artikel dengan ID postingan
+    return redirect()->route('artikel', ['id' => $post->id])->with('success', $message);
   }
+
 
   public function getPostById($id)
   {
@@ -69,9 +90,6 @@ class PostController extends Controller
   public function deletePost($id)
   {
     $post = Post::findOrFail($id);
-    if ($post->user_id !== session('id')) {
-      return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk menghapus postingan ini.');
-    }
 
     $post->delete();
 
