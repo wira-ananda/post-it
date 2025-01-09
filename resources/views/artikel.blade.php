@@ -43,11 +43,31 @@
   </article>
 
   <!-- Form Komentar -->
-  <form action="/artikel/{{ $post->id }}" method="POST" class="mt-6 flex items-center space-x-4">
+  <!-- <form action="/artikel/{{ $post->id }}" method="POST" class="mt-6 flex items-center space-x-4" enctype="multipart/form-data>
     @csrf
-    <input type="text" name="comment" placeholder="Berikan tanggapan tentang artikel ini..." class="flex-1 border rounded px-4 py-2" required>
+    <input type=" text" name="comment" placeholder="Berikan tanggapan tentang artikel ini..." class="flex-1 border rounded px-4 py-2" required>
     <button type="submit" class="px-6 py-2 bg-black text-white rounded">Kirim</button>
+
   </form>
+
+  <form action="/artikel/{{ $post->id }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <label for="image">Pilih Gambar:</label>
+    <input type="file" name="image" id="image" required>
+    <button type="submit">Unggah</button>
+  </form> -->
+  <form action="{{ route('comment.store', $post->id) }}" method="POST" enctype="multipart/form-data" class="mt-6">
+    @csrf
+    <div class="space-y-4">
+      <input type="text" name="comment" placeholder="Berikan tanggapan tentang artikel ini..." class="w-full border rounded px-4 py-2" required>
+      <div>
+        <label for="image" class="block text-sm font-medium text-gray-700">Unggah Gambar (Opsional):</label>
+        <input type="file" name="image" id="image" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200">
+      </div>
+      <button type="submit" class="px-6 py-2 bg-black text-white rounded w-full">Kirim</button>
+    </div>
+  </form>
+
 
   <!-- Daftar Komentar -->
   @include ('component.commentSection')

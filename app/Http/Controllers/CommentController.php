@@ -16,20 +16,62 @@ class CommentController extends Controller
     ], 500);
   }
 
-  public function storeComment(Request $request, $id)
+  // public function storeComment(Request $request, $id)
+  // {
+  //   try {
+  //     Comments::create([
+  //       'content' => $request->input('comment'),
+  //       'post_id' => $id,
+  //       'user_id' => session('id'),
+  //     ]);
+
+  //     return redirect()->back()->with('success', 'Komentar berhasil ditambahkan.');
+  //   } catch (\Exception $e) {
+  //     return redirect()->back()->with('error', 'Gagal menambahkan komentar: ' . $e->getMessage());
+  //   }
+  // }
+
+  // public function storeFotoComment(Request $request)
+  // {
+  //   $imageName = time() . '.' . $request->image->extension();
+
+  //   $request->image->move(public_path('images'), $imageName);
+
+  //   return back()->with('success', 'Gambar berhasil diunggah!')
+  //     ->with('image', $imageName);
+  // }
+
+  public function storeCommentWithPhoto(Request $request, $id)
   {
     try {
-      Comments::create([
+      // Validasi input
+      $request->validate([
+        'comment' => 'required|string|max:500',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+      ]);
+
+      // Proses penyimpanan komentar
+      $commentData = [
         'content' => $request->input('comment'),
         'post_id' => $id,
         'user_id' => session('id'),
-      ]);
+      ];
 
-      return redirect()->back()->with('success', 'Komentar berhasil ditambahkan.');
+      // Proses penyimpanan gambar (jika ada)
+      if ($request->hasFile('image')) {
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+        $commentData['image'] = $imageName;
+      }
+
+      Comments::create($commentData);
+
+      return redirect()->back()->with('success', 'Komentar dan gambar berhasil ditambahkan.');
     } catch (\Exception $e) {
       return redirect()->back()->with('error', 'Gagal menambahkan komentar: ' . $e->getMessage());
     }
   }
+
 
   public function index(): JsonResponse
   {

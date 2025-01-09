@@ -3,10 +3,14 @@
   <div id="komentar" class="space-y-6">
     @forelse ($comments as $comment)
     <div class="flex items-start w-full justify-between space-x-4">
-      <div class="">
+      <div>
         <p class="text-gray-600 text-sm">{{ '@' . $comment->user->username }}</p>
         <p class="font-semibold text-md">{{ $comment->content }}</p>
+        @if($comment->image)
+        <img src="{{ asset('images/' . $comment->image) }}" width="7000">
+        @endif
       </div>
+
       @if (session('role') == 'admin' || session('id') == $post->user_id)
       <div>
         <form action="/comment/{{$comment->id}}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus?');">
@@ -22,7 +26,6 @@
       </div>
       @endif
     </div>
-
     @empty
     <p class="text-gray-500 text-sm">Belum ada komentar.</p>
     @endforelse

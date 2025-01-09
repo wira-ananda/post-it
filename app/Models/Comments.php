@@ -11,7 +11,7 @@ class Comments extends Model
     protected $table = 'comments';
     protected $primaryKey = 'id';
     public $timestamps = false;
-    protected $fillable = ['content', 'post_id', 'user_id'];
+    protected $fillable = ['content', 'post_id', 'user_id', 'image'];
 
     public function user()
     {

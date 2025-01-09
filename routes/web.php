@@ -32,7 +32,12 @@ Route::post('/create', [PostController::class, 'writePost']);
 
 Route::get('/artikel/{id}', [PostController::class, 'getPostById'])->name('artikel');
 
-Route::post('/artikel/{id}', action: [CommentController::class, 'storeComment']);
+// Route::post('/artikel/{id}', action: [CommentController::class, 'storeComment']);
+
+// Route::post('/artikel/{id}', action: [CommentController::class, 'storeFotoComment']);
+
+Route::post('/artikel/{id}', [CommentController::class, 'storeCommentWithPhoto'])->name(name: 'comment.store');
+
 
 Route::delete('/artikel/{id}', action: [PostController::class, 'deletePost']);
 
