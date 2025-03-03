@@ -16,31 +16,6 @@ class CommentController extends Controller
     ], 500);
   }
 
-  // public function storeComment(Request $request, $id)
-  // {
-  //   try {
-  //     Comments::create([
-  //       'content' => $request->input('comment'),
-  //       'post_id' => $id,
-  //       'user_id' => session('id'),
-  //     ]);
-
-  //     return redirect()->back()->with('success', 'Komentar berhasil ditambahkan.');
-  //   } catch (\Exception $e) {
-  //     return redirect()->back()->with('error', 'Gagal menambahkan komentar: ' . $e->getMessage());
-  //   }
-  // }
-
-  // public function storeFotoComment(Request $request)
-  // {
-  //   $imageName = time() . '.' . $request->image->extension();
-
-  //   $request->image->move(public_path('images'), $imageName);
-
-  //   return back()->with('success', 'Gambar berhasil diunggah!')
-  //     ->with('image', $imageName);
-  // }
-
   public function storeCommentWithPhoto(Request $request, $id)
   {
     try {

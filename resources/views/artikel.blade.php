@@ -43,19 +43,6 @@
   </article>
 
   <!-- Form Komentar -->
-  <!-- <form action="/artikel/{{ $post->id }}" method="POST" class="mt-6 flex items-center space-x-4" enctype="multipart/form-data>
-    @csrf
-    <input type=" text" name="comment" placeholder="Berikan tanggapan tentang artikel ini..." class="flex-1 border rounded px-4 py-2" required>
-    <button type="submit" class="px-6 py-2 bg-black text-white rounded">Kirim</button>
-
-  </form>
-
-  <form action="/artikel/{{ $post->id }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <label for="image">Pilih Gambar:</label>
-    <input type="file" name="image" id="image" required>
-    <button type="submit">Unggah</button>
-  </form> -->
   <form action="{{ route('comment.store', $post->id) }}" method="POST" enctype="multipart/form-data" class="mt-6">
     @csrf
     <div class="space-y-4">
